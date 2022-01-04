@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\Models\EvAdmin;
+use App\Models\EvConfig;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Cache;
 
 class Init extends Command
 {
@@ -46,6 +48,13 @@ class Init extends Command
             $res = EvAdmin::create(["name" => $name, "password" => md5($passwd)]);
         }
         if ($res) {
+            $defaultconfig = ["name" => "easyvod", "logo" => "", "icp" => "xxxx", "email" => "admin@admin.com", "keywords" => "easyvod", "content" => "easyvod", "tj" => "xxxx", "notice" => "测试公告", "cache" => 1, "method" => "qihu", "template" => "dyxs", "status" => 1];
+            $config = EvConfig::first();
+            if (blank($config)) {
+                EvConfig::Create($defaultconfig);
+                $config = json_decode(json_encode($defaultconfig));
+                Cache::forever("webconfig", json_encode($config));
+            }
             echo "用户初始化成功\n";
         } else {
             echo "用户初始化失败\n";
