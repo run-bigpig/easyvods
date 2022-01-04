@@ -17,7 +17,7 @@ class CreateEvPlayersTable extends Migration
             $table->id();
             $table->string("name")->comment("播放器名称");
             $table->string("url")->comment("播放器地址");
-            $table->string("type")->comment("播放器分类")->unique();
+            $table->string("type")->comment("播放器分类")->unique("type");
             $table->timestamps();
         });
     }
