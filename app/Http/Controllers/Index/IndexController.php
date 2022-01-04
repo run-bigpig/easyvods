@@ -67,18 +67,18 @@ class IndexController extends Controller
             $nowplay["nowaddress"] = base64_decode_plus($nowaddress);
             $nowplay["nowurl"] = $nowurl;
             $nowplay["nowplay"] = checkeraddress($nowplay["nowaddress"]);
-            if (strpos($nowurl,"sourceids")!==false){
-                list($sourceid,$nowurl) = explode("$",$nowurl);
+            if (strpos($nowurl, "sourceids") !== false) {
+                list($sourceid, $nowurl) = explode("$", $nowurl);
                 $source = EvSource::find($sourceid);
-                Ev::init(["type"=>"source","domin"=>$source->url]);
+                Ev::init(["type" => "source", "domin" => $source->url]);
             }
             $vod = Ev::VodPlay(["url" => $nowurl]);
         } else {
             $nowurl = $url;
-            if (strpos($url,"sourceids")!==false){
-                list($sourceid,$url) = explode("$",$url);
+            if (strpos($url, "sourceids") !== false) {
+                list($sourceid, $url) = explode("$", $url);
                 $source = EvSource::find($sourceid);
-                Ev::init(["type"=>"source","domin"=>$source->url]);
+                Ev::init(["type" => "source", "domin" => $source->url]);
             }
             $vod = Ev::VodPlay(["url" => $url]);
             if (count($vod["play"]) > 0) {
@@ -100,12 +100,12 @@ class IndexController extends Controller
     public function Search(Request $request)
     {
         $kw = $request->input("cz");
-        if ($request->input("sourceid",false)){
+        if ($request->input("sourceid", false)) {
             $source = EvSource::find($request->input('sourceid'));
-            Ev::init(["type"=>"source","domin"=>$source->url]);
+            Ev::init(["type" => "source", "domin" => $source->url]);
         }
         $vodlist = Ev::VodSearch(['key' => $kw]);
-        return view(webconfig("template") . ".views.search", ["vodlist" => $vodlist, "kw" => $kw,"sourceid"=>$request->input("sourceid","")]);
+        return view(webconfig("template") . ".views.search", ["vodlist" => $vodlist, "kw" => $kw, "sourceid" => $request->input("sourceid", "")]);
     }
 
 }

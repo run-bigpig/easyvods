@@ -24,6 +24,7 @@ class AdminController extends Controller
         return view("easyvod.views.index");
     }
 
+    //后台首页显示
     public function Console()
     {
         $source = EvSource::count();
@@ -33,10 +34,11 @@ class AdminController extends Controller
         return view("easyvod.views.console", ["source" => $source, "link" => $link, "player" => $player, "number" => $number]);
     }
 
+    //网站基础配置
     public function WebConfig(Request $request)
     {
         if ($request->isMethod("get")) {
-            $defaultconfig = ["name" => "easyvod", "logo" => "", "icp" => "xxxx", "email" => "admin@admin.com", "keywords" => "easyvod", "content" => "easyvod", "tj" => "xxxx", "cache" => 1, "method" => "qihu", "template" => "dyxs", "status" => 1];
+            $defaultconfig = ["name" => "easyvod", "logo" => "", "icp" => "xxxx", "email" => "admin@admin.com", "keywords" => "easyvod", "content" => "easyvod", "tj" => "xxxx", "notice" => "测试公告", "cache" => 1, "method" => "qihu", "template" => "dyxs", "status" => 1];
             $config = EvConfig::first();
             if (blank($config)) {
                 EvConfig::Create($defaultconfig);
@@ -56,6 +58,7 @@ class AdminController extends Controller
         return response()->json(["code" => 0, "msg" => "更新失败"]);
     }
 
+    //友情链接
     public function Link(Request $request)
     {
         if ($request->isMethod("get")) {
@@ -81,15 +84,16 @@ class AdminController extends Controller
         }
     }
 
+    //播放器
     public function Player(Request $request)
     {
         if ($request->isMethod("get")) {
             $playerarr = config("ev.playertype");
             $players = EvSource::get()->pluck("type")->toArray();
-            foreach ($players as $player){
-                $playerarr = array_merge($playerarr,mb_stripos($player,"#")===false?[$player]:explode("#",$player));
+            foreach ($players as $player) {
+                $playerarr = array_merge($playerarr, mb_stripos($player, "#") === false ? [$player] : explode("#", $player));
             }
-            return view("easyvod.views.player",["playerarr"=>$playerarr]);
+            return view("easyvod.views.player", ["playerarr" => $playerarr]);
         }
         $action = $request->input("action");
         switch ($action) {
@@ -111,6 +115,7 @@ class AdminController extends Controller
         }
     }
 
+    //资源站
     public function Source(Request $request)
     {
         if ($request->isMethod("get")) {
@@ -149,6 +154,7 @@ class AdminController extends Controller
     }
 
 
+    //检测资源站是否符合要求
     private function CheckSource($data)
     {
         $api = $data["url"] . "?wd=复仇者联盟";
@@ -193,9 +199,10 @@ class AdminController extends Controller
             return ["state" => false, "msg" => ["code" => 1, "msg" => "当前API没有播放器标识"]];
         }
         $typearr = mb_stripos($playertype, ",") !== false ? explode(",", $playertype) : explode("$$$", $playertype);
-        return ["state" => true, "msg" => implode("#",$typearr)];
+        return ["state" => true, "msg" => implode("#", $typearr)];
     }
 
+    //网站缓存刷新
     public function WebCache(Request $request)
     {
         if ($request->isMethod("get")) {

@@ -17,7 +17,7 @@ class CreateEvSourcesTable extends Migration
             $table->id();
             $table->string("name")->comment("资源站名称");
             $table->string("url")->comment("资源站api地址");
-            $table->string("type")->comment("api类型 xml/json")->default("xml");
+            $table->string("type")->comment("播放器类型");
             $table->tinyInteger("status")->comment("状态 0关闭 1开启")->default(0);
             $table->timestamps();
         });

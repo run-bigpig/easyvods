@@ -36,7 +36,14 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">统计代码:</label>
+                            <label class="layui-form-label">公告:</label>
+                            <div class="layui-input-block">
+                                <textarea name="notice" placeholder="请输入网站公告"
+                                          class="layui-textarea">{{$config->notice}}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">统计:</label>
                             <div class="layui-input-block">
                                 <textarea name="tj" placeholder="请输入统计代码"
                                           class="layui-textarea">{{$config->tj}}</textarea>
