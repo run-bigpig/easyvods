@@ -1,12 +1,12 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => '1.0.0+no-version-set',
-    'version' => '1.0.0.0',
+    'pretty_version' => 'dev-master',
+    'version' => 'dev-master',
     'aliases' => 
     array (
     ),
-    'reference' => NULL,
+    'reference' => '6dc08f92b39527e4269c8ed484e637bfd08a1dde',
     'name' => 'laravel/lumen',
   ),
   'versions' => 
@@ -438,24 +438,14 @@
         0 => '*',
       ),
     ),
-    'lala437/easyvod' => 
-    array (
-      'pretty_version' => 'dev-dev',
-      'version' => 'dev-dev',
-      'aliases' => 
-      array (
-        0 => '9999999-dev',
-      ),
-      'reference' => '20596e02a002951ed508ff939dc0f066a05f3d18',
-    ),
     'laravel/lumen' => 
     array (
-      'pretty_version' => '1.0.0+no-version-set',
-      'version' => '1.0.0.0',
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
       'aliases' => 
       array (
       ),
-      'reference' => NULL,
+      'reference' => '6dc08f92b39527e4269c8ed484e637bfd08a1dde',
     ),
     'laravel/lumen-framework' => 
     array (
@@ -848,6 +838,16 @@
         0 => '4.2.3',
       ),
     ),
+    'run-bigpig/ev' => 
+    array (
+      'pretty_version' => 'dev-dev',
+      'version' => 'dev-dev',
+      'aliases' => 
+      array (
+        0 => '9999999-dev',
+      ),
+      'reference' => '2a9eb4da4110ad184fe80491c6562d7dd7b92bd9',
+    ),
     'sebastian/cli-parser' => 
     array (
       'pretty_version' => '1.0.1',
@@ -1233,12 +1233,12 @@
     ),
     'tightenco/collect' => 
     array (
-      'pretty_version' => 'v8.76.1',
-      'version' => '8.76.1.0',
+      'pretty_version' => 'v8.77.1',
+      'version' => '8.77.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'c7e8131653480146d4c32c2523d53e0e59a7af19',
+      'reference' => '5bbc138489177734f6c2279ee2acd5fef16f19fd',
     ),
     'vlucas/phpdotenv' => 
     array (

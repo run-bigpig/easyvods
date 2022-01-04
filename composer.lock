@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb6d8cda552994d73177c79cb7681df8",
+    "content-hash": "458723cc554e9400a5b513a9dd88f5ad",
     "packages": [
         {
             "name": "brick/math",
@@ -2868,54 +2868,6 @@
             "time": "2021-08-08T05:04:55+00:00"
         },
         {
-            "name": "lala437/easyvod",
-            "version": "dev-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lala437/easyvod.git",
-                "reference": "20596e02a002951ed508ff939dc0f066a05f3d18"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lala437/easyvod/zipball/20596e02a002951ed508ff939dc0f066a05f3d18",
-                "reference": "20596e02a002951ed508ff939dc0f066a05f3d18",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "jaeger/querylist": "dev-master",
-                "php": ">=7.0.0"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "EasyVod\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "syskey",
-                    "email": "syskeykala@gmail.com"
-                }
-            ],
-            "description": "A package to get video",
-            "support": {
-                "issues": "https://github.com/lala437/easyvod/issues",
-                "source": "https://github.com/lala437/easyvod/tree/dev"
-            },
-            "time": "2022-01-01T13:05:03+00:00"
-        },
-        {
             "name": "laravel/lumen-framework",
             "version": "v8.3.4",
             "source": {
@@ -4350,6 +4302,54 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "run-bigpig/ev",
+            "version": "dev-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/run-bigpig/ev.git",
+                "reference": "2a9eb4da4110ad184fe80491c6562d7dd7b92bd9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/run-bigpig/ev/zipball/2a9eb4da4110ad184fe80491c6562d7dd7b92bd9",
+                "reference": "2a9eb4da4110ad184fe80491c6562d7dd7b92bd9",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "jaeger/querylist": "dev-master",
+                "php": ">=7.0.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "EasyVod\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "syskey",
+                    "email": "syskeykala@gmail.com"
+                }
+            ],
+            "description": "A package to get video",
+            "support": {
+                "issues": "https://github.com/run-bigpig/ev/issues",
+                "source": "https://github.com/run-bigpig/ev/tree/dev"
+            },
+            "time": "2022-01-04T03:45:18+00:00"
         },
         {
             "name": "symfony/console",
@@ -6452,16 +6452,16 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v8.76.1",
+            "version": "v8.77.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/collect.git",
-                "reference": "c7e8131653480146d4c32c2523d53e0e59a7af19"
+                "reference": "5bbc138489177734f6c2279ee2acd5fef16f19fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/collect/zipball/c7e8131653480146d4c32c2523d53e0e59a7af19",
-                "reference": "c7e8131653480146d4c32c2523d53e0e59a7af19",
+                "url": "https://api.github.com/repos/tighten/collect/zipball/5bbc138489177734f6c2279ee2acd5fef16f19fd",
+                "reference": "5bbc138489177734f6c2279ee2acd5fef16f19fd",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -6506,9 +6506,9 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/collect/issues",
-                "source": "https://github.com/tighten/collect/tree/v8.76.1"
+                "source": "https://github.com/tighten/collect/tree/v8.77.1"
             },
-            "time": "2021-12-14T22:01:32+00:00"
+            "time": "2022-01-03T18:11:28+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
@@ -9148,7 +9148,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "lala437/easyvod": 20
+        "run-bigpig/ev": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

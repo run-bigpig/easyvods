@@ -7,8 +7,8 @@
     "require": {
         "php": "^7.3|^8.0",
         "ext-json": "*",
-        "lala437/easyvod": "dev-dev",
         "laravel/lumen-framework": "^8.0",
+        "run-bigpig/ev": "dev-dev",
         "youngyezi/captcha": "^6.0"
     },
     "require-dev": {

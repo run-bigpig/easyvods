@@ -526,7 +526,7 @@ class ComposerStaticInit134ba589992f32cdcd470a2c25ba9e6e
         ),
         'EasyVod\\' => 
         array (
-            0 => __DIR__ . '/..' . '/lala437/easyvod/src',
+            0 => __DIR__ . '/..' . '/run-bigpig/ev/src',
         ),
         'Dotenv\\' => 
         array (
@@ -857,13 +857,13 @@ class ComposerStaticInit134ba589992f32cdcd470a2c25ba9e6e
         'Dotenv\\Util\\Regex' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Util/Regex.php',
         'Dotenv\\Util\\Str' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Util/Str.php',
         'Dotenv\\Validator' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Validator.php',
-        'EasyVod\\Collect' => __DIR__ . '/..' . '/lala437/easyvod/src/Collect.php',
-        'EasyVod\\Facades\\EasyVodFacade' => __DIR__ . '/..' . '/lala437/easyvod/src/Facades/EasyVodFacade.php',
-        'EasyVod\\Factory' => __DIR__ . '/..' . '/lala437/easyvod/src/Factory.php',
-        'EasyVod\\QhCollect' => __DIR__ . '/..' . '/lala437/easyvod/src/QhCollect.php',
-        'EasyVod\\SourceCollect' => __DIR__ . '/..' . '/lala437/easyvod/src/SourceCollect.php',
-        'EasyVod\\Units\\FunctionUnit' => __DIR__ . '/..' . '/lala437/easyvod/src/Units/FunctionUnit.php',
-        'EasyVod\\VtCollect' => __DIR__ . '/..' . '/lala437/easyvod/src/VtCollect.php',
+        'EasyVod\\Collect' => __DIR__ . '/..' . '/run-bigpig/ev/src/Collect.php',
+        'EasyVod\\Facades\\EasyVodFacade' => __DIR__ . '/..' . '/run-bigpig/ev/src/Facades/EasyVodFacade.php',
+        'EasyVod\\Factory' => __DIR__ . '/..' . '/run-bigpig/ev/src/Factory.php',
+        'EasyVod\\QhCollect' => __DIR__ . '/..' . '/run-bigpig/ev/src/QhCollect.php',
+        'EasyVod\\SourceCollect' => __DIR__ . '/..' . '/run-bigpig/ev/src/SourceCollect.php',
+        'EasyVod\\Units\\FunctionUnit' => __DIR__ . '/..' . '/run-bigpig/ev/src/Units/FunctionUnit.php',
+        'EasyVod\\VtCollect' => __DIR__ . '/..' . '/run-bigpig/ev/src/VtCollect.php',
         'Egulias\\EmailValidator\\EmailLexer' => __DIR__ . '/..' . '/egulias/email-validator/src/EmailLexer.php',
         'Egulias\\EmailValidator\\EmailParser' => __DIR__ . '/..' . '/egulias/email-validator/src/EmailParser.php',
         'Egulias\\EmailValidator\\EmailValidator' => __DIR__ . '/..' . '/egulias/email-validator/src/EmailValidator.php',

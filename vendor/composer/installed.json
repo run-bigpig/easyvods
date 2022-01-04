@@ -845,7 +845,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/guzzle/guzzle/zipball/ee0a041b1760e6a53d2a39c8c34115adc2af2c79",
                 "reference": "ee0a041b1760e6a53d2a39c8c34115adc2af2c79",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "ext-json": "*",
@@ -3140,7 +3146,7 @@
             "time": "2021-08-08T05:04:55+00:00",
             "default-branch": true,
             "type": "library",
-            "installation-source": "dist",
+            "installation-source": "source",
             "autoload": {
                 "psr-4": {
                     "QL\\": "src"
@@ -3174,57 +3180,6 @@
                 }
             ],
             "install-path": "../jaeger/querylist"
-        },
-        {
-            "name": "lala437/easyvod",
-            "version": "dev-dev",
-            "version_normalized": "dev-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lala437/easyvod.git",
-                "reference": "20596e02a002951ed508ff939dc0f066a05f3d18"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lala437/easyvod/zipball/20596e02a002951ed508ff939dc0f066a05f3d18",
-                "reference": "20596e02a002951ed508ff939dc0f066a05f3d18",
-                "shasum": "",
-                "mirrors": [
-                    {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
-                        "preferred": true
-                    }
-                ]
-            },
-            "require": {
-                "jaeger/querylist": "dev-master",
-                "php": ">=7.0.0"
-            },
-            "time": "2022-01-01T13:05:03+00:00",
-            "default-branch": true,
-            "type": "library",
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "EasyVod\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "syskey",
-                    "email": "syskeykala@gmail.com"
-                }
-            ],
-            "description": "A package to get video",
-            "support": {
-                "issues": "https://github.com/lala437/easyvod/issues",
-                "source": "https://github.com/lala437/easyvod/tree/dev"
-            },
-            "install-path": "../lala437/easyvod"
         },
         {
             "name": "laravel/lumen-framework",
@@ -3407,7 +3362,13 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/094defdb4a7001845300334e7c1ee2335925ef99",
                 "reference": "094defdb4a7001845300334e7c1ee2335925ef99",
-                "shasum": ""
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
             },
             "require": {
                 "ext-fileinfo": "*",
@@ -5741,6 +5702,57 @@
                 }
             ],
             "install-path": "../ramsey/uuid"
+        },
+        {
+            "name": "run-bigpig/ev",
+            "version": "dev-dev",
+            "version_normalized": "dev-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/run-bigpig/ev.git",
+                "reference": "2a9eb4da4110ad184fe80491c6562d7dd7b92bd9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/run-bigpig/ev/zipball/2a9eb4da4110ad184fe80491c6562d7dd7b92bd9",
+                "reference": "2a9eb4da4110ad184fe80491c6562d7dd7b92bd9",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "jaeger/querylist": "dev-master",
+                "php": ">=7.0.0"
+            },
+            "time": "2022-01-04T03:45:18+00:00",
+            "default-branch": true,
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-4": {
+                    "EasyVod\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "syskey",
+                    "email": "syskeykala@gmail.com"
+                }
+            ],
+            "description": "A package to get video",
+            "support": {
+                "issues": "https://github.com/run-bigpig/ev/issues",
+                "source": "https://github.com/run-bigpig/ev/tree/dev"
+            },
+            "install-path": "../run-bigpig/ev"
         },
         {
             "name": "sebastian/cli-parser",
@@ -9047,17 +9059,17 @@
         },
         {
             "name": "tightenco/collect",
-            "version": "v8.76.1",
-            "version_normalized": "8.76.1.0",
+            "version": "v8.77.1",
+            "version_normalized": "8.77.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tighten/collect.git",
-                "reference": "c7e8131653480146d4c32c2523d53e0e59a7af19"
+                "reference": "5bbc138489177734f6c2279ee2acd5fef16f19fd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tighten/collect/zipball/c7e8131653480146d4c32c2523d53e0e59a7af19",
-                "reference": "c7e8131653480146d4c32c2523d53e0e59a7af19",
+                "url": "https://api.github.com/repos/tighten/collect/zipball/5bbc138489177734f6c2279ee2acd5fef16f19fd",
+                "reference": "5bbc138489177734f6c2279ee2acd5fef16f19fd",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -9075,7 +9087,7 @@
                 "nesbot/carbon": "^2.23.0",
                 "phpunit/phpunit": "^8.3"
             },
-            "time": "2021-12-14T22:01:32+00:00",
+            "time": "2022-01-03T18:11:28+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -9104,7 +9116,7 @@
             ],
             "support": {
                 "issues": "https://github.com/tighten/collect/issues",
-                "source": "https://github.com/tighten/collect/tree/v8.76.1"
+                "source": "https://github.com/tighten/collect/tree/v8.77.1"
             },
             "install-path": "../tightenco/collect"
         },
