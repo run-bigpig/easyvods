@@ -38,7 +38,7 @@ class AdminController extends Controller
     public function WebConfig(Request $request)
     {
         if ($request->isMethod("get")) {
-            $defaultconfig = ["name" => "easyvod", "logo" => "", "icp" => "xxxx", "email" => "admin@admin.com", "keywords" => "easyvod", "content" => "easyvod", "tj" => "xxxx", "notice" => "测试公告", "cache" => 1, "method" => "qihu", "template" => "dyxs", "status" => 1];
+            $defaultconfig = ["name" => "easyvod", "logo" => "https://s3.bmp.ovh/imgs/2021/12/2b10e5863ed2cfae.png", "icp" => "xxxx", "email" => "admin@admin.com", "keywords" => "easyvod", "content" => "easyvod", "tj" => "xxxx", "notice" => "测试公告", "cache" => 1, "method" => "qihu", "template" => "dyxs", "status" => 1];
             $config = EvConfig::first();
             if (blank($config)) {
                 EvConfig::Create($defaultconfig);
