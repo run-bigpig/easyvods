@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>在线播放{{$vodinfo['title']}}</title>
+    <meta name="keywords" content="{{$vodinfo['title']}}免费在线观看,{{$vodinfo['title']}}剧情介绍" />
+    <meta name="description" content="{{$vodinfo['title']}}免费在线观看,{{$vodinfo['title']}}剧情介绍" />
+@include("dyxs.views.include")  <!-- 头部 -->
+    <script type="text/javascript">var vod_name="{{$vodinfo["title"]}}",vod_url="{{request()->path()}}"</script>
+    <script type="text/javascript"  src="{{ev_index("dyxs/statics/js/history.js")}}"></script>
+</head>
+<body  class="page play">
+@include("dyxs.views.head1")  <!-- 头部 -->
+<main id="main" class="wrapper">
+    <div class="player-block">
+        <div class="content">
+            <div class="player-box">
+                <div class="player-box-main">
+                    <div class="tips-box"><span class="close-btn"><i class="icon-close-o"></i></span>
+                        <ul class="tips-list">
+                            <div class="swiper-container">
+                                <div class="swiper-wrapper">
+                                    <li class="swiper-slide">正在播放{{$vodinfo['title']}}</li>
+                                    <li class="swiper-slide"><span class="btn-main">提醒</span>不要轻易相信视频中的任何广告，谨防上当受骗</li>
+                                    <li class="swiper-slide"><span class="btn-yellow">技巧</span>如遇视频无法播放或加载速度慢，可尝试切换播放节点</li>
+                                    <li class="swiper-slide"><span class="btn-yellow">收藏</span>网址：{{request()->getHost()}}<strong>记得收藏哟～</strong></li>
+                                </div></div>
+                        </ul>
+                    </div>
+                    <div class="player-wrapper">
+                        <style>.EvPlayer{background: #000000;font-size:14px;color:#F6F6F6;margin:0px;padding:0px;position:relative;overflow:hidden;width:100%;height:100%;min-height:100px;}.EvPlayer table{width:100%;height:100%;}.EvPlayer #playleft{position:inherit;!important;width:100%;height:100%;}</style>
+                        <div class="EvPlayer"><iframe id="install" src="" frameborder="0" scrolling="no" width="100%" height="100%" style="position:absolute;z-index:99998;display:none;"></iframe><table border="0" cellpadding="0" cellspacing="0" class="in" style="height: 100%; width: 450px;"><tbody><tr><td id="playleft" valign="top" style=""><iframe width="100%" height="100%" src="{{$nowplay["nowplay"]}}" frameborder="0" border="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" security="restricted" sandbox="allow-same-origin allow-forms allow-scripts"></iframe></td></tr></tbody></table></div>
+                         <div class="player-box-switch">
+						<span class="btn_switch_bg">
+							<svg class="svg_icon" viewBox="0 0 9 59" width="9" height="59"><path d="M3.8,5.1C1.7,4.3,0.2,2.4,0,0h0v5v4v41v5v3.9c0.6-1.9,2.1-3.4,4-4v0c2.9-0.7,5-3.2,5-6.3v-37  C9,8.4,6.8,5.7,3.8,5.1z"></path></svg>
+						</span>
+                            <i class="icon-arrow-left-o"></i>
+                            <i class="icon-arrow-right-o"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="player-info">
+                <div class="video-info">
+                    <div class="video-info-box">
+                        <div class="video-info-header">
+                            <h1 class="page-title"><a href="#" title="{{$vodinfo['title']}}">{{$vodinfo['title']}}</a></h1>
+                            <span class="btn-pc page-title"></span>
+                            <div class="video-info-aux">
+                                <a class="tag-link" href="#">{{$vodinfo["kind"]}}</a>
+                                <a class="tag-link" href="#">{{$vodinfo["area"]}}</a>
+                                <a class="tag-link" href="#">{{$vodinfo['director']}}</a>
+                                <a class="tag-link" href="#">{{$vodinfo['actor']}}</a>
+                            </div>
+                        </div>
+                        <div class="video-info-main">
+                            <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
+                                <div class="video-info-item video-info-content">
+                                    <p class="zkjj_a" >{{mb_substr($vodinfo['desc'],0,90)}}<span class="zk_jj red">[展开全部]</span></p><p class="sqjj_a" style="display: none;">{!! $vodinfo['desc'] !!}<span class="sq_jj red">[收起部分]</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="video-player-handle">
+                        <a href="#" class="btn-block-o handle-btn" title="播放{{$vodinfo["title"]}}下一集"><i class="icon-next"></i><p class="block-name">下一集</p></a>
+                        <div class="drop pc"><span class="btn-block-o handle-btn handle-more" title="拿起手机扫一扫"><i class="icon-qrcode"></i>
+                        <p class="block-name">手机看</p>
+                        </span>
+                            <div class="drop-content handle-more-drop">
+                                <div class="drop-content-box">
+                                    <div class="drop-content-items"><a class="btn-qrcode">
+                                            <div class="qrcode-img"></div>
+                                            <div class="block-name">
+                                                <p>使用 手机浏览器 扫码观看</p>
+                                                <strong>{{$vodinfo["title"]}}</strong></div>
+                                        </a></div>
+                                </div>
+                            </div>
+                            <div class="shortcuts-mobile-overlay"></div>
+                        </div>
+                        <div class="video-player-handle-more">
+                            <div class="btn-block-o handle-btn handle-share share-btn" title="分享《{{$vodinfo["title"]}}》给朋友一起看" data-clipboard-text="我正在观看{{$vodinfo["title"]}}，推荐给你一起看！地址:{{request()->url()}}"><i class="icon-share"></i>
+                                <p class="block-name">分享</p>
+                            </div>
+                            <div class="drop"><span class="btn-block-o handle-btn handle-more"><i class="icon-more"></i>
+                <p class="block-name">观影+</p>
+                </span>
+                                <div class="drop-content handle-more-drop">
+                                    <div class="drop-content-box">
+                                        <div class="drop-content-items"><a class="btn-block-o btn-report" href="javascript:;"><i class="icon-warn"></i>
+                                                <p class="block-name"><strong>影片报错</strong><br>
+                                                    如遇无法播放请提交给我们</p>
+                                            </a><a class="btn-block-o btn-screen"><i class="icon-tv"></i>
+                                                <p class="block-name"><strong>投屏到电视</strong><br>
+                                                    教程：把手机影片投到电视上播放</p>
+                                            </a></div>
+                                    </div>
+                                </div>
+                                <div class="shortcuts-mobile-overlay"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--AD3-->
+{{--                <div class="player-recommend recommend-list"><a href="#" target="_blank"><div class="pc"><img src=""></div><div class="phone"><img src=""></div></a></div>--}}
+                <!---->
+            </div>
+
+            <div class="player-box-side">
+                <div class="module-heading">
+                    <h2 class="module-title" title="{{$vodinfo["title"]}}的在线观看列表">在线观看</h2>
+                    <div class="module-tab module-player-tab  player-side-tab">
+                        <input type="hidden" name="tab" id="tab" class="module-tab-input">
+                        <label class="module-tab-name"><span class="module-tab-value">切换节点</span><i class="icon-arrow-bottom-o"></i></label>
+                        <div class="module-tab-items">
+                            <div class="module-tab-title">播放节点列表<span class="close-drop"><i class="icon-close-o"></i></span></div>
+                            <div class="module-tab-content">
+                                @foreach($vodplay as $play)
+                                <div class="module-tab-item tab-item {{$nowplay["nowtype"]==$play['type']?"selected":""}}" data-dropdown-value="{{$play['type']}}"><span>{{$play['type']}}</span></div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="shortcuts-mobile-overlay"></div>
+                </div>
+                @foreach($vodplay as $play)
+                <div class="module-list module-player-list tab-list sort-list module-vod-list {{$nowplay["nowtype"]==$play['type']?"selected":""}} player-side-playlist">
+                <div class="module-tab module-sorttab">
+                    <input type="hidden" name="tab-sort" id="tab-sort" class="module-tab-input">
+                    <label class="module-tab-name"><i class="icon-all"></i></label>
+                    <div class="module-tab-items">
+                        <div class="module-tab-title">选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-{{$loop->index+1}}"><i class="icon-sort"></i>排序</a></div>
+                        <div class="module-tab-content">
+                            <div class="module-blocklist">
+                                <div class="sort-item" id="sort-item-{{$loop->index+1}}">
+                                    @foreach($play["list"] as $dz)
+                                    <a href="{{nowplay($play['type'],$dz['address'],$nowplay["nowurl"])}}" class="{{$nowplay["nowaddress"]==$dz["address"]?"selected":""}}"  title="播放{{$vodinfo["title"]}}"><span>{{$dz['episode']}}</span></a>
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="shortcuts-mobile-overlay"></div>
+                <div class="module-blocklist scroll-box scroll-box-y">
+                    <div class="scroll-content">
+                        @foreach($play["list"] as $dz)
+                            <a href="{{nowplay($play['type'],$dz['address'],$nowplay["nowurl"])}}" class="{{$nowplay["nowaddress"]==$dz["address"]?"selected":""}}"  title="播放{{$vodinfo["title"]}}"><span>{{$dz['episode']}}</span></a>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
+    </div>
+    <div class="content">
+
+    </div>
+</main>
+
+@include("dyxs.views.foot")  <!-- 底部-->
+
+<div class="shortcuts-box"><div id="shortcuts-info"></div></div>
+
+<div class="shortcuts-mobile-overlay"></div>
+@include("dyxs.views.projection") <!-- 投屏教程 -->
+
+<div class="shortcuts-mobile-overlay"></div>
+
+
+@include("dyxs.views.report")
+
+
+<div class="shortcuts-mobile-overlay"></div>
+<span class="mac_ulog_set none" alt="设置播放页浏览记录" data-type="4" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-sid="{$param.sid}" data-nid="{$param.nid}"></span>
+<span class="mac_hits none" data-mid="{$maccms.mid}" data-id="{$obj.vod_id}" data-type="hits"></span>
+<script>
+    $(".sq_jj").click(function(){
+        $(".sqjj_a").toggle();
+        $(".zkjj_a").toggle();
+    });
+    $(".zk_jj").click(function(){
+        $(".sqjj_a").toggle();
+        $(".zkjj_a").toggle();
+    });
+    if ($('.swiper-container').length > 0) {
+        var mySwiper = new Swiper('.swiper-container', {
+            direction: 'vertical',
+            speed: 500,
+            autoplay: {
+                delay: 5000,
+                stopOnLastSlide: false,
+                disableOnInteraction: false,
+            },
+            loop: true
+        });
+    }
+</script>
+
+<script>
+    window.onload=function(){
+        var ha = ($('.EvPlayer').find('table').offset().top + $('.EvPlayer').find('table').height());
+        $(window).scroll(function(){
+            if ( $(window).scrollTop() > ha ) {
+                $('.EvPlayer').find('table').removeClass('in').addClass('out');
+                $('.EvPlayer').find('table').css('height','250px');
+                $('.EvPlayer').find('table').css('width','450px');
+            } else if ( $(window).scrollTop() < ha) {
+                $('.EvPlayer').find('table').removeClass('out').addClass('in');
+                $('.EvPlayer').find('table').css('height','100%');
+            }
+        });
+    }
+</script>
+</body>
+
+</html>

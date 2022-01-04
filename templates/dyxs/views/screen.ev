@@ -1,0 +1,50 @@
+<div class="box">
+    <div class="library-box library-box-first scroll-box">
+        <div class="scroll-content">
+            <div class="library-list">
+                <a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="library-item  {{$channel=="mv"?"selected":""}}" title="电影片库">电影</a>
+                <a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="library-item  {{$channel=="tv"?"selected":""}}" title="电视片库">电视</a>
+                <a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="library-item  {{$channel=="va"?"selected":""}}" title="综艺片库">综艺</a>
+                <a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="library-item  {{$channel=="ct"?"selected":""}}" title="动漫片库">动漫</a>
+            </div>
+        </div>
+    </div>
+    <div class="library-box scroll-box">
+        <div class="scroll-content">
+            <a class="library-item library-item-first {{$kind=="all"?"selected":""}}" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">全部</a>
+            <div class="library-list">
+                @foreach(config("vodclass.".$channel.".kind") as $key=>$vtype)
+                    @continue($key=="all")
+                <a class="library-item {{$key==$kind?"selected":""}}" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$key,"area"=>$area,"year"=>$year,"pageno"=>1])}}" title="{{$vtype}}">{{$vtype}}</a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="library-box scroll-box">
+        <div class="scroll-content">
+            <a class="library-item library-item-first {{$area=="all"?"selected":""}}" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">全部</a>
+            <div class="library-list">
+                @foreach(config("vodclass.".$channel.".area") as $key=>$varea)
+                    @continue($key=="all")
+                    <a class="library-item {{$key==$area?"selected":""}}" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$key,"year"=>$year,"pageno"=>1])}}" title="{{$varea}}">{{$varea}}</a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <div class="library-box scroll-box">
+        <div class="scroll-content">
+            <a class="library-item library-item-first {{$year=="all"?"selected":""}}" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">全部</a>
+            <div class="library-list">
+                @foreach(config("vodclass.".$channel.".year") as $key=>$vyear)
+                    @continue($key=="all")
+                    <a class="library-item {{$key==$year?"selected":""}}" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$area,"year"=>$key,"pageno"=>1])}}" title="{{$vyear}}">{{$vyear}}</a>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+{{--    <div class="library-box">--}}
+{{--        <h2 class="library-stat">影片库为你选出<span class="important mac_total"></span>部影片</h2>--}}
+{{--    </div>--}}
+</div>
+

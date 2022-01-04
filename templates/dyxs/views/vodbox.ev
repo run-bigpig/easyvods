@@ -1,0 +1,28 @@
+<div class="module-item">
+    <div class="module-item-cover">
+        <div class="module-item-pic">
+            <a href="{{ev_route("index.play",["url"=>$vod["url"]])}}" title="{{$vod["title"]}}" >
+                <i class="icon-play"></i>
+            </a>
+            <img class="lazy lazyloaded"  data-src="{{$vod["img"]}}" src="{{$vod["img"]}}"  alt="{{$vod["title"]}}">
+            <div class="loading"></div>
+        </div>
+        <div class="module-item-caption">
+            <span>{{$vod["pay"]==1?"付费":"免费"}}</span>
+            <span class="video-class">{{$channel=="mv"?"评分".$vod["score"]:"更新至".$vod["episode"]}}</span>
+            <span></span>
+        </div>
+        <div class="module-item-content">
+            <div class="module-item-style video-name">
+                <a href="{{ev_route("index.play",["url"=>$vod["url"]])}}" title="{{$vod["title"]}}">{{$vod["title"]}}</a>
+            </div>
+            <div class="module-item-style video-tag">
+            </div>
+            <div class="module-item-style video-text">{{$channel=="mv"?"评分".$vod["score"]:"更新至".$vod["episode"]}}</div>
+        </div>
+    </div>
+    <div class="module-item-titlebox">
+        <a href="{{ev_route("index.play",["url"=>$vod["url"]])}}" class="module-item-title" title="{{$vod["title"]}}">{{$vod["title"]}}</a>
+    </div>
+    <div class="module-item-text">{{$channel=="tv"?"更新至".$vod["episode"]:""}}</div>
+</div>

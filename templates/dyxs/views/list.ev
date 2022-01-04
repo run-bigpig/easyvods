@@ -1,0 +1,69 @@
+<!-- Module End -->
+<div class="module">
+    <div class="module-heading">
+        <h2 class="module-title"><i class="icon-happy"></i> 热播榜单</h2>
+        <div class="module-tab">
+            <label class="module-tab-name">
+                <span class="module-tab-value">全部</span>
+                <i class="icon-arrow-bottom"></i>
+            </label>
+            <div class="module-tab-items">
+                <div class="module-tab-title">
+                    选择类型
+                    <span class="close-drop">
+								<i class="icon-close-o"></i>
+							</span>
+                </div>
+                <div>
+{{--                    <span class="module-tab-item tab-item selected" data-id="0" data-name="全部">全部</span>--}}
+                    <span class="module-tab-item tab-item selected" data-id="mv" data-name="电影">电影</span>
+                    <span class="module-tab-item tab-item" data-id="tv" data-name="电视">电视</span>
+                    <span class="module-tab-item tab-item" data-id="va" data-name="综艺">综艺</span>
+                    <span class="module-tab-item tab-item" data-id="ct" data-name="动漫">动漫</span>
+                </div>
+            </div>
+        </div>
+        <div class="shortcuts-mobile-overlay"></div>
+    </div>
+
+    @foreach($ranklist as $channel=>$vods)
+    <div class="module-list module-line-list tab-list {{$channel=="mv"?"selected":""}}" id="tab-list-{{$channel}}">
+        <div class="module-items scroll-box">
+            <div class="scroll-content">
+                @foreach($vods as $vod)
+                    @include("dyxs.views.vodbox")
+                    @break($loop->index==16)
+                @endforeach
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+@foreach($vodlist as $channel=>$vods)
+<div class="module">
+    <div class="module-heading">
+        <h2 class="module-title">
+            @if($channel=="mv")
+            <i class="icon-cate-dy"></i>
+            @elseif($channel=="tv")
+            <i class="icon-cate-ds"></i>
+            @elseif($channel=="ct")
+            <i class="icon-cate-dm"></i>
+            @else
+            <i class="icon-cate-zy"></i>
+            @endif
+            {{$vodtypename[$channel]}}</h2>
+        <a class="more" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" title="更多{{$vodtypename[$channel]}}">更多{{$vodtypename[$channel]}}
+            <i class="icon-arrow-right-o"></i>
+        </a>
+    </div>
+    <div class="module-list module-lines-list">
+        <div class="module-items">
+            @foreach($vods as $vod)
+                @include("dyxs.views.vodbox")
+            @endforeach
+        </div>
+    </div>
+</div>
+@endforeach

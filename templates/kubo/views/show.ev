@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE10" />
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>分类列表</title>
+    <meta name="keywords" content="easyvods" />
+    <meta name="description" content="easyvods" />
+    @include('kubo.views.include')
+</head>
+<body>
+@include('kubo.views.head')
+<div class="container">
+    <div class="row">
+        <div class="stui-pannel stui-pannel-bg clearfix">
+
+        </div>
+        <div class="stui-pannel stui-pannel-bg clearfix">
+            <div class="stui-pannel-box">
+                <div class="stui-pannel_hd">
+                    <div class="stui-pannel__head active bottom-line clearfix">
+                        <h3 class="title">
+                            <img src="{{ev_index('kubo/statics/images/icon_2.png')}}" />分类列表</h3>
+                    </div>
+                    <ul class="stui-screen__list type-slide bottom-line-dot clearfix">
+                        <li>
+                            <span class="text-muted">按频道</span></li>
+                        <li><a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="{{$channel=="mv"?"active":""}}" target='_self'>电影</a></li>
+                        <li><a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"  class="{{$channel=="tv"?"active":""}}" target='_self'>电视剧</a></li>
+                        <li><a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"   class="{{$channel=="va"?"active":""}}" target='_self'>综艺</a></li>
+                        <li><a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"  class="{{$channel=="ct"?"active":""}}" target='_self'>动漫</a></li>
+                    </ul>
+                    <ul class="stui-screen__list type-slide bottom-line-dot clearfix">
+                        <li><span class="text-muted">按类型</span></li>
+                        @foreach(config("vodclass.".$channel.".kind") as $key=>$vtype)
+                            <li><a href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$key,"area"=>$area,"year"=>$year,"pageno"=>1])}}" class="{{$key==$kind?"active":""}}"   target='_self'>{{$vtype}}</a></li>
+                        @endforeach
+                    </ul>
+                    <ul class="stui-screen__list type-slide bottom-line-dot clearfix">
+                        <li><span class="text-muted">按地区</span></li>
+                        @foreach(config("vodclass.".$channel.".area") as $key=>$varea)
+                            <li><a href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$key,"year"=>$year,"pageno"=>1])}}" class="{{$key==$area?"active":""}}"   target='_self'>{{$varea}}</a></li>
+                        @endforeach
+                    </ul>
+                    <ul class="stui-screen__list type-slide bottom-line-dot clearfix">
+                        <li><span class="text-muted">按年份</span></li>
+                        @foreach(config("vodclass.".$channel.".year") as $key=>$vyear)
+                            <li><a href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$area,"year"=>$key,"pageno"=>1])}}" class="{{$key==$year?"active":""}}"   target='_self'>{{$vyear}}</a></li>
+                        @endforeach
+                    </ul>
+                </div>
+                <div class="stui-pannel_bd">
+                    <ul class="stui-vodlist clearfix">
+                        @foreach($vodlist as $vod)
+                        <li class="col-md-6 col-sm-4 col-xs-3">
+                            <div class="stui-vodlist__box">
+                                <a class="stui-vodlist__thumb img-shadow" href="{{ev_route("index.play",["url"=>$vod["url"]])}}" title="{{$vod['title']}}">
+                                    <img src="{{$vod['img']}}" alt="{{$vod['title']}}">
+                                    <span class="play hidden-xs"></span>
+                                    <span class="pic-text text-right">{{$channel=="mv"?$vod['score']:$vod["episode"]}}</span></a>
+                                <div class="stui-vodlist__detail">
+                                    <h4 class="title text-overflow">
+                                        <a href="{{ev_route("index.play",["url"=>$vod["url"]])}}" title="{{$vod['title']}}">{{$vod['title']}}</a></h4>
+                                    <p class="text text-overflow text-muted hidden-xs"></p></div>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- 筛选列表 -->
+    @include('kubo.views.page')
+        <!-- 列表翻页-->
+    </div>
+</div>
+@include('kubo.views.foot')
+</body>
+
+</html>

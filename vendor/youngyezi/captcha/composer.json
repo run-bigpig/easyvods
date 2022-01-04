@@ -1,0 +1,23 @@
+{
+    "name": "youngyezi/captcha",
+    "description": "Captcha for Lumen，Lumen 验证码",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "youngyezi"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Youngyezi\\Captcha\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.2",
+        "ext-gd": "*",
+        "laravel/lumen-framework": ">=6.0",
+        "intervention/image": "^2.5"
+    },
+    "minimum-stability": "dev"
+}

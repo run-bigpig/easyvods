@@ -1,0 +1,31 @@
+<div class="module-search-item">
+    <div class="video-cover">
+        <div class="module-item-cover">
+            <div class="module-item-pic"><a href="{{ev_route("index.play",["url"=>($sourceid==""?"":$sourceid."$").$vod["url"]])}}" title="立刻播放{{$vod["title"]}}"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="{{$vod["img"]}}" src="{{$vod["img"]}}" alt="{{$vod["title"]}}">
+                <div class="loading"></div>
+            </div>
+        </div>
+    </div>
+    <div class="video-info">
+        <div class="video-info-header"><a class="video-serial" href="{{ev_route("index.play",["url"=>($sourceid==""?"":$sourceid."$").$vod["url"]])}}" title="{{$vod["title"]}}"></a>
+            <h3><a href="{{ev_route("index.play",["url"=>($sourceid==""?"":$sourceid."$").$vod["url"]])}}" title="{{$vod["title"]}}">{{$vod["title"]}}</a></h3>
+            <div class="video-info-aux">
+                <a href="#" title="" class="tag-link">{{$vod["channel"]}}</a>
+                <div class="tag-link">{{$vod["kind"]}}</div>
+            </div>
+        </div>
+        <div class="video-info-main">
+            <div class="video-info-items"><span class="video-info-itemtitle">年份：</span>
+                <div class="video-info-item video-info-actor">
+                    {{$vod["year"]}}
+                </div>
+            </div>
+            <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
+                <div class="video-info-item">{{mb_substr($vod['desc'],0,90)}}....</div>
+            </div>
+        </div>
+        <div class="video-info-footer">
+            <a href="{{ev_route("index.play",["url"=>($sourceid==""?"":$sourceid."$").$vod["url"]])}}" class="btn-important btn-base" title="立刻播放{{$vod["title"]}}"><i class="icon-play"></i><strong>立即播放</strong></a>
+        </div>
+    </div>
+</div>

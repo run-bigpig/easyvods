@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>{{webconfig("name")}}</title>
+    <meta name="keywords" content="{{webconfig("keywords")}}" />
+    <meta name="description" content="{{webconfig("content")}}" />
+    @include("dyxs.views.include")
+</head>
+<body class="homepage" >
+
+@include("dyxs.views.head")
+
+<main id="index-main" class="wrapper">
+    <div class="content">
+        @include("dyxs.views.slide")
+
+        <!--AD1-->
+{{--        <div class="index-recommend recommend-list"><a href="/" target="_blank"><div class="pc"><img src="/"></div><div class="phone"><img src="/"></div></a></div>--}}
+        <!---->
+
+{{--            @include("dyxs.views.hot")--}}
+
+            @include("dyxs.views.list")
+
+    </div>
+</main>
+@include("dyxs.views.links")
+
+@include("dyxs.views.foot")
+</body>
+</html>

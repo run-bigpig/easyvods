@@ -1,0 +1,15 @@
+<link rel="icon" href="log" type="image/png" />
+<link href="{{ev_index("dyxs/statics/css/style.css")}}" rel="stylesheet" type="text/css">
+<link href="{{ev_index("dyxs/statics/css/ali.css")}}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="{{ev_index("dyxs/statics/css/swiper-bundle.min.css")}}" type="text/css">
+<script>var maccms={"path":"","mid":"","url":"/","wapurl":"/","mob_status":"0"};</script>
+<script type="text/javascript"  src="{{ev_index("dyxs/statics/js/jquery.js")}}"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/layer/3.4.0/layer.min.js"></script>
+<script type="text/javascript"  src="{{ev_index("dyxs/statics/js/jquery.lazyload.js")}}"></script>
+<script type="text/javascript"  src="{{ev_index("dyxs/statics/js/jquery.autocomplete.js")}}"></script>
+<script type="text/javascript" src="{{ev_index("dyxs/statics/js/jquery.cookie.js")}}"></script>
+<script type="text/javascript"  src="{{ev_index("dyxs/statics/js/home.js")}}"></script>
+<script type="text/javascript"  src="{{ev_index("dyxs/statics/js/jquery.clipboard.js")}}"></script>
+<script type="text/javascript"  src="{{ev_index("dyxs/statics/js/swiper-bundle.min.js")}}"></script>
+<script type="text/javascript"  src="{{ev_index("dyxs/statics/js/jquery.qrcode.min.js")}}"></script>
+<script type="text/javascript"  src="{{ev_index("dyxs/statics/js/script.js")}}"></script>

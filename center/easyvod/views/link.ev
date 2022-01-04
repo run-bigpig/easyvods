@@ -1,0 +1,289 @@
+@extends("easyvod.views.layout")
+@section("content")
+    <body class="pear-container">
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">名称</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="name" placeholder="" class="layui-input">
+                    </div>
+                    <button class="pear-btn pear-btn-md pear-btn-primary" lay-submit lay-filter="data-query">
+                        <i class="layui-icon layui-icon-search"></i>
+                        查询
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="layui-card">
+        <div class="layui-card-body">
+            <table id="data-table" lay-filter="data-table"></table>
+        </div>
+    </div>
+
+    <script type="text/html" id="data-toolbar">
+        <button class="pear-btn pear-btn-primary pear-btn-md" lay-event="add">
+            <i class="layui-icon layui-icon-add-1"></i>
+            新增
+        </button>
+    </script>
+
+    <script type="text/html" id="data-bar">
+        <button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>
+        </button>
+        <button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="remove"><i class="layui-icon layui-icon-delete"></i>
+        </button>
+    </script>
+
+    <script type="text/html" id="DataFormView">
+        <form class="layui-form" id="DataForm" lay-filter="DataForm" action="">
+            <input type="hidden" name="id">
+            <div class="mainBox">
+                <div class="main-container">
+                    <div class="main-container">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">名称:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" lay-verify="required" autocomplete="off"
+                                       placeholder="请输入友链名称" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地址:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="url" lay-verify="required" autocomplete="off"
+                                       placeholder="请输入友链地址" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">排序:</label>
+                            <div class="layui-input-block">
+                                <input type="number" name="sort" lay-verify="required" autocomplete="off"
+                                       placeholder="数字越大越靠前" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">状态:</label>
+                            <div class="layui-input-block">
+                            <input type="radio" name="status" value="1" title="显示" checked>
+                            <input type="radio" name="status" value="0" title="隐藏">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="button-container">
+                    <button type="submit" class="pear-btn pear-btn-primary pear-btn-sm" id="BtnAction" lay-submit=""
+                            lay-filter="DataFormSubmit">
+                        <i class="layui-icon layui-icon-ok"></i>
+                        提交
+                    </button>
+                    <button type="reset" class="pear-btn pear-btn-sm">
+                        <i class="layui-icon layui-icon-refresh"></i>
+                        重置
+                    </button>
+                </div>
+            </div>
+        </form>
+    </script>
+    </body>
+@endsection
+@section("js")
+    <script>
+        layui.use(['table', 'form', 'jquery', 'button'], function () {
+            var table = layui.table;
+            var button = layui.button;
+            var form = layui.form;
+            var $ = layui.jquery;
+            var action, dobj
+
+            let MODULE_PATH = "{{route("admin.link")}}";
+
+            let cols = [
+                [
+                    {
+                        title: 'ID',
+                        field: 'id',
+                        align: 'center',
+                    },
+                    {
+                        title: '名称',
+                        field: 'name',
+                        align: 'center',
+                    },
+                    {
+                        title: '地址',
+                        field: 'url',
+                        align: 'center',
+                    },
+                    {
+                        title: '排序',
+                        field: 'sort',
+                        align: 'center',
+                    },
+                    {
+                        title: '状态',
+                        field: 'status',
+                        align: 'center',
+                        templet:function (dd) {
+                             return dd.status==1?"显示":"隐藏"
+                        }
+                    },
+                    {
+                        title: '操作',
+                        toolbar: '#data-bar',
+                        align: 'center',
+                        width: 160,
+                        fixed: 'right'
+                    }
+                ]
+            ]
+
+            table.render({
+                elem: '#data-table',
+                url: MODULE_PATH + "?action=list",
+                page: true,
+                method:"post",
+                cols: cols,
+                toolbar: '#data-toolbar',
+                cellMinWidth: 100,
+                size: "lg",
+                defaultToolbar: [{
+                    layEvent: 'refresh',
+                    icon: 'layui-icon-refresh',
+                }, 'filter', 'print', 'exports']
+            });
+
+            table.on('tool(data-table)', function (obj) {
+                if (obj.event === 'remove') {
+                    window.remove(obj);
+                } else if (obj.event === 'edit') {
+                    dobj = obj
+                    window.edit(obj);
+                }
+            });
+
+            table.on('toolbar(data-table)', function (obj) {
+                if (obj.event === 'add') {
+                    addorupdate("add", obj)
+                } else if (obj.event === 'refresh') {
+                    window.refresh();
+                }
+            });
+
+            form.on('submit(data-query)', function (data) {
+                table.reload('data-table', {
+                    where: data.field
+                })
+                return false;
+            });
+
+
+            //打开添加或者编辑视频窗口
+            function addorupdate(type, dataobj = null) {
+                action = type
+                layer.open({
+                    type: 1,
+                    title: type == 'add' ? '添加友链' : "编辑友链",
+                    area: ['500px', '350px'],
+                    offset: 'auto',
+                    content: $('#DataFormView').html(),
+                    scrollbar: false,
+                    success: function (layero, dIndex) {
+                        $(layero).children('.layui-layer-content').css('overflow', 'visible');
+                        //渲染时间
+                        if (type == "update") {
+                            let data = dataobj.data;
+                            form.val("DataForm", {
+                                id: data.id,
+                                name: data.name,
+                                url: data.url,
+                                sort: data.sort,
+                                status:data.status,
+                            })
+                        }
+                        form.render();
+                    }
+                });
+            }
+
+            form.on('submit(DataFormSubmit)', function (data) {
+                let loadbtn = button.load({
+                    "elem": "#BtnAction"
+                })
+                $.ajax({
+                    type: "post",
+                    url: MODULE_PATH+"?action=" + action,
+                    data: data.field,
+                    dataType: "json",
+                    success: function (res) {
+                        loadbtn.stop()
+                        switch (action) {
+                            case "add":
+                                if (res.code == 0) {
+                                    layer.msg(res.msg)
+                                    table.reload('data-table');
+                                } else {
+                                    layer.msg("创建失败")
+                                }
+                                break;
+                            case "update":
+                                if (res.code == 0) {
+                                    layer.msg(res.msg)
+                                    dobj.update({
+                                        name: data.field.name,
+                                        url: data.field.url,
+                                        sort: data.field.sort,
+                                        status:data.field.status
+                                    })
+                                } else {
+                                    layer.msg("更新失败")
+                                }
+                                break;
+                        }
+                    },
+                    error: function () {
+                        loadbtn.stop()
+                        layer.msg("执行失败")
+                    }
+                })
+                return false
+            });
+
+            window.edit = function (obj) {
+                addorupdate("update", obj)
+            }
+
+            window.refresh = function (param) {
+                table.reload('data-table');
+            }
+
+            window.remove = function (obj) {
+                layer.confirm("确定删除?", function (index) {
+                    $.ajax({
+                        type: "post",
+                        url: MODULE_PATH+"?action=delete",
+                        data: {id: obj.data.id},
+                        dataType: "json",
+                        success: function (res) {
+                            if (res.code == 0) {
+                                obj.del()
+                                layer.msg("删除成功")
+                            } else {
+                                layer.msg("删除失败")
+                            }
+                            layer.close(index)
+                        },
+                        errpr: function () {
+                            layer.close(index)
+                            layer.msg("删除失败")
+                        }
+                    })
+                })
+            }
+        })
+    </script>
+@endsection

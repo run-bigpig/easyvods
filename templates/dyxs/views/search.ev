@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>搜索结果{{$kw}}</title>
+    <meta name="keywords" content="{{webconfig("keywords")}}" />
+    <meta name="description" content="{{webconfig("content")}}" />
+    @include("dyxs.views.include")
+</head>
+<body class="search page">
+@include("dyxs.views.searchhead") <!-- 头部 -->
+<main id="main" class="wrapper">
+    <div class="content">
+        <div id="search-content">
+            <form action="{{ev_route("index.search",[])}}">
+                <div class="search-box">
+                    <input class="search-input ac_wd" id="txtKeywords" type="text" name="cz" autocomplete="off" placeholder="搜索电影、电视剧、综艺、动漫">
+                    <div class="search-drop">
+                        <div class="drop-content-items ac_hot none">
+                            <div class="list-item list-item-title"><strong>从其他资源站获取结果(默认全网搜索)</strong></div>
+                            <div class="search-tag">
+                                @foreach(ev_source() as $source)
+                                    <a href="javascript:void(0)" source="{{$source["id"]}}" class="hot sourcesearch">{{$source["name"]}}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
+                    <button class="cancel-btn" type="button">取消</button>
+                </div>
+            </form>
+            <div class="search-stat">
+                <h1></h1>
+                <h2>搜索"{{$kw}}"找到 <strong class="mac_total">{{count($vodlist)}}</strong>部影视作品</h2>
+            </div>
+        </div>
+        <div class="module">
+            <div class="module-list">
+                <div class="module-items">
+                    @foreach($vodlist as $vod)
+                        @include("dyxs.views.searchvodbox")
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+@include("dyxs.views.foot")
+</body>
+</html>

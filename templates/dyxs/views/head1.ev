@@ -1,0 +1,82 @@
+<header id="header" class="wrapper">
+    <div class="nav content">
+        <div class="brand">
+            <a href="/" class="logo" title=""><img src="{{webconfig("logo")}}" alt="easyvod"></a>
+        </div>
+        <div class="nav-search">
+            <form action="{{ev_route("index.search",[])}}">
+                <div class="search-box">
+                    <input class="search-input ac_wd" id="txtKeywords" type="text" name="cz" autocomplete="off" placeholder="搜索电影、电视剧、综艺、动漫">
+                    <div class="search-drop">
+                        <div class="drop-content-items ac_hot none">
+                            <div class="list-item list-item-title"><strong>从其他资源站获取结果(默认全网搜索)</strong></div>
+                            <div class="search-tag">
+                                @foreach(ev_source() as $source)
+                                    <a href="javascript:void(0)" source="{{$source["id"]}}" class="hot sourcesearch">{{$source["name"]}}</a>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
+                    <button class="cancel-btn" type="button">取消</button>
+                </div>
+            </form>
+        </div>
+        <nav class="nav-menu">
+            <ul class="nav-menu-items">
+                <li class="nav-menu-item"><a href="/" class="nav-link white" title="首页"><i class="icon-home"></i>首页</a></li>
+                <li class="nav-menu-item"><a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="nav-link white" title="电影"><i class="icon-cate-dy"></i>电影</a></li>
+                <li class="nav-menu-item"><a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="nav-link white " title="电视"><i class="icon-cate-ds"></i>电视</a></li>
+                <li class="nav-menu-item"><a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="nav-link white " title="综艺"><i class="icon-cate-zy"></i>综艺</a></li>
+                <li class="nav-menu-item"><a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="nav-link white" title="动漫"><i class="icon-cate-dm"></i>动漫</a></li>
+                <li class="space-line-bold white "></li>
+                <li class="nav-menu-item drop">
+					<span class="nav-menu-icon">
+                        <i class="icon-watch-history  white "></i>
+                    </span>
+                    <div class="drop-content drop-history">
+                        <div class="drop-content-box">
+                            <ul class="drop-content-items" id="history">
+                                <li class="list-item list-item-title">
+                                    <a href="" class="playlist historyclean">
+                                        <i class="icon-clear"></i>
+                                    </a>
+                                    <strong>我的观影记录</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="shortcuts-mobile-overlay"></div>
+                </li>
+                <li class="space-line-bold"></li>
+                <li class="nav-menu-item drop">
+					<span class="nav-menu-icon">
+                        <i class="icon-all" style="color: #fff;"></i>
+                    </span>
+                    <div class="drop-content sub-block">
+                        <div class="drop-content-box grid-box">
+                            <ul class="drop-content-items grid-items">
+                                <li class="grid-item"><a href="/"><i class="icon-home"></i><div class="grid-item-name" title="首页">首页</div></a></li>
+                                <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-dy"></i><div class="grid-item-name" title="电影">首页</div></a></li>
+                                <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-ds"></i><div class="grid-item-name" title="电视">电视</div></a></li>
+                                <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-zy"></i><div class="grid-item-name" title="综艺">综艺</div></a></li>
+                                <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-dm"></i><div class="grid-item-name" title="动漫">动漫</div></a></li>
+                                <li class="grid-item grid-more">
+                                    <a class="grid-more-link"  href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" title="查看全部影片">
+                                        <div class="grid-item-name">全部影片</div>
+                                    </a>
+                                </li>
+                                <li class="grid-item grid-more android">
+                                    <a href="/" class="grid-more-link" title="下载APP">
+                                        <div class="grid-item-name">下载客户端</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="shortcuts-mobile-overlay"></div>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>

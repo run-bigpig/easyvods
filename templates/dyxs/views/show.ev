@@ -1,0 +1,32 @@
+<!DOCTYPE html >
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>最新电影</title>
+    <meta name="keywords" content="{{webconfig("keywords")}}" />
+    <meta name="description" content="{{webconfig("content")}}" />
+    @include("dyxs.views.include")
+</head>
+<body class="library page">
+@include("dyxs.views.head1")   <!-- 头部 -->
+<main id="main" class="wrapper">
+    <div class="content">
+        <div class="page-heading">
+            <h1 class="page-title">影片库</h1>
+        @include("dyxs.views.screen")    <!-- 筛选 -->
+        </div>
+        <div class="module">
+            <div class="module-list">
+                <div class="module-items">
+                    @foreach($vodlist as $vod)
+                        @include("dyxs.views.vodbox")
+                    @endforeach
+                </div>
+            </div>
+        @include("dyxs.views.page") <!-- 分页筛选 -->
+        </div>
+    </div>
+</main>
+@include("dyxs.views.foot") <!-- 底部-->
+</body>

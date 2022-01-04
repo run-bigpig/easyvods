@@ -1,0 +1,8 @@
+<div id="friendlink" class="wrapper hidden-xs">
+    <div class="content">
+        <h2>友情链接：</h2>
+        @foreach(ev_link() as $link)
+        <a href="{{$link["url"]}}" target="_blank" title="{{$link["name"]}}">{{$link["name"]}}</a>
+        @endforeach
+    </div>
+</div>

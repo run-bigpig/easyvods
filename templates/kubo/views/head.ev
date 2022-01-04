@@ -1,0 +1,74 @@
+<header class="stui-header__top clearfix" id="header-top">
+    <div class="container">
+        <div class="row">
+            <div class="stui-header_bd clearfix">
+                <div class="stui-header__logo">
+                    <a class="logo" href="/"><img src="/"></a>
+                </div>
+                <div class="stui-header__side">
+                    <ul class="stui-header__user">
+                        <li class="visible-xs">
+                            <a class="open-popup" href="javascript:;">
+                                <i class="icon iconfont icon-viewgallery"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="stui-header__search">
+                        <form name="search" id="search" action="{{ev_route("index.search",[])}}" method="get" autocomplete="off">
+                            <input class="form-control mac_wd" id="wd" placeholder="100万部影片任你搜" name="cz" type="text" required="">
+                            <input type="submit" id="searchbutton" value="232323" class="hide">
+                            <input type="hidden" name="lazyloadz" id="lazyloadz" value="1">
+                            <button class="submit" id="submit">
+                                <i class="icon iconfont icon-search"></i>
+                            </button>
+                        </form>
+                        <div id="word" class="autocomplete-suggestions">
+                        </div>
+                    </div>
+                </div>
+                <ul class="stui-header__menu type-slide">
+                    <li class="">
+                    <a href="/">首页</a>
+                    </li>
+                    <li  class="">
+                    <a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">电影</a>
+                    </li>
+                    <li  class="">
+                        <a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">电视</a>
+                    </li>
+                    <li  class="">
+                        <a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">综艺</a>
+                    </li>
+                    <li  class="">
+                        <a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">动漫</a>
+                    </li>
+                    {{--<li><a href="javascript:;" class="mac_history">历史记录</a></li>--}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="popup clearfix">
+    <div class="popup-head bottom-line">
+        <h5 class="title pull-right">全部分类</h5>
+        <a href="javascript:;" class="close-popup">
+            <i class="icon iconfont icon-back"></i>
+        </a>
+    </div>
+    <div class="popup-body col-pd">
+        <h4>电影</h4>
+        <ul class="tag tag-type">
+            @foreach(config('vodclass.mv.kind') as $key=>$vtype)
+            <li class="col-xs-4"><a href="{{ev_route("index.list",["channel"=>"mv","kind"=>$key,"area"=>"all","year"=>"all","pageno"=>1])}}">{{$vtype}}</a></li>
+           @endforeach
+        </ul>
+        <h4>电视</h4>
+        <ul class="tag tag-type">
+            @foreach(config('vodclass.tv.kind') as $key=>$vtype)
+                <li class="col-xs-4"><a href="{{ev_route("index.list",["channel"=>"tv","kind"=>$key,"area"=>"all","year"=>"all","pageno"=>1])}}">{{$vtype}}</a></li>
+            @endforeach
+        </ul>
+    </div>
+
+
+</div>

@@ -1,0 +1,129 @@
+@extends("easyvod.views.layout")
+@section("content")
+    <body class="pear-container">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12">
+            <div class="layui-card" style="margin-top: 10px;">
+                <div class="layui-card-header"></div>
+                <div class="layui-card-body layui-row layui-col-space10">
+                    <form class="layui-form" lay-filter="DataForm" action="javascript:void(0);">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">名称:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="name" placeholder="请输入网站名称" value="{{$config->name}}"
+                                       class="layui-input" lay-verify="required" required/>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">LOGO:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="logo" lay-verify="required" value="{{$config->logo}}" hover
+                                       placeholder="请输入LOGO" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">ICP:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="icp" lay-verify="required" value="{{$config->icp}}" hover
+                                       placeholder="请输入ICP" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">Email:</label>
+                            <div class="layui-input-block">
+                                <input type="text" name="email" lay-verify="required" value="{{$config->email}}" hover
+                                       placeholder="请输入Email" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">统计代码:</label>
+                            <div class="layui-input-block">
+                                <textarea name="tj" placeholder="请输入统计代码"
+                                          class="layui-textarea">{{$config->tj}}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">目标站:</label>
+                            <div class="layui-input-block">
+                                <select name="method" lay-verify="" lay-filter="method">
+                                    <option value="weitang" {{$config->method=="weitang"?"selected":""}}>维棠</option>
+                                    <option value="qihu" {{$config->method=="qihu"?"selected":""}}>360kan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模板:</label>
+                            <div class="layui-input-block">
+                                <select name="template" lay-verify="" lay-filter="template">
+                                    <option value="dyxs" {{$config->template=="dyxs"?"selected":""}}>电影先生</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">全站缓存:</label>
+                            <div class="layui-input-block">
+                                <input type="checkbox" name="cache" lay-skin="switch" lay-text="开启|关闭" {{$config->cache=="1"?"checked":""}}>&nbsp;&nbsp;
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"></label>
+                            <button class="pear-btn pear-btn-primary" id="BtnAction" lay-filter="DataFormSubmit"
+                                    lay-submit>提交
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+@endsection
+@section("js")
+    <script>
+        layui.use(['form', 'element', 'button'], function () {
+            var form = layui.form;
+            var $ = layui.jquery;
+            var element = layui.element;
+            var button = layui.button;
+
+            form.on("select(method)",function () {
+                layer.msg("切换目标站会清理全部缓存,请知悉")
+            })
+
+            form.on("select(template)",function () {
+                layer.msg("切换模板会清理全部缓存,请知悉")
+            })
+
+            form.on('submit(DataFormSubmit)', function (data) {
+                let loadbtn = button.load({
+                    "elem": "#BtnAction"
+                })
+                if (data.field.cache == "on") {
+                    data.field.cache = 1
+                } else {
+                    data.field.cache = 0
+                }
+                $.ajax({
+                    type: "post",
+                    url: "{{route("admin.config")}}",
+                    data: data.field,
+                    dataType: "json",
+                    success: function (res) {
+                        if (res.code == 0) {
+                            loadbtn.stop()
+                            layer.msg(res.msg)
+                        } else {
+                            loadbtn.stop()
+                            layer.msg("更新失败")
+                        }
+                    },
+                    error: function () {
+                        loadbtn.stop()
+                        layer.msg("更新失败")
+                    }
+                })
+                return false
+            });
+        });
+    </script>
+@endsection

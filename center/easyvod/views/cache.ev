@@ -1,0 +1,65 @@
+@extends("easyvod.views.layout")
+@section("content")
+    <body class="pear-container">
+    <div class="layui-row layui-col-space10">
+        <div class="layui-col-md12">
+            <div class="layui-card" style="margin-top: 10px;">
+                <div class="layui-card-header"></div>
+                <div class="layui-card-body layui-row layui-col-space10">
+                    <form class="layui-form" lay-filter="DataForm" action="javascript:void(0);">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">刷新地址:</label>
+                            <div class="layui-input-block">
+                                <textarea name="urls" placeholder="请输入刷新地址,多个地址一行一个,须带上http或者https 刷新全站请填*号"  rows="20" class="layui-textarea"></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"></label>
+                            <button class="pear-btn pear-btn-primary" id="BtnAction" lay-filter="DataFormSubmit"
+                                    lay-submit>刷新
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+@endsection
+@section("js")
+    <script>
+        layui.use(['form', 'element', 'button'], function () {
+            var form = layui.form;
+            var $ = layui.jquery;
+            var element = layui.element;
+            var button = layui.button;
+
+            form.on('submit(DataFormSubmit)', function (data) {
+                let loadbtn = button.load({
+                    "elem": "#BtnAction"
+                })
+                let urls = data.field.urls.split(/[(\r\n)\r\n]+/);
+                $.ajax({
+                    type: "post",
+                    url: "{{route("admin.cache")}}",
+                    data: {urls:urls},
+                    dataType: "json",
+                    success: function (res) {
+                        if (res.code == 0) {
+                            loadbtn.stop()
+                            layer.msg(res.msg)
+                        } else {
+                            loadbtn.stop()
+                            layer.msg("更新失败")
+                        }
+                    },
+                    error: function () {
+                        loadbtn.stop()
+                        layer.msg("更新失败")
+                    }
+                })
+                return false
+            });
+        });
+    </script>
+@endsection

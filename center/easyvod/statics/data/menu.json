@@ -1,0 +1,57 @@
+[
+    {
+        "id": 1,
+        "title": "主页",
+        "type": 1,
+        "icon": "layui-icon layui-icon-console",
+        "openType": "_iframe",
+        "href": "/easyvod/console"
+    },
+    {
+        "id": 2,
+        "title": "基础设置",
+        "type": 1,
+        "icon": "layui-icon layui-icon-set",
+        "openType": "_iframe",
+        "href": "/easyvod/config"
+    },
+    {
+        "id": 3,
+        "title": "播放器",
+        "type": 1,
+        "icon": "layui-icon layui-icon-video",
+        "openType": "_iframe",
+        "href": "/easyvod/player"
+    },
+    {
+        "id": 4,
+        "title": "资源站",
+        "type": 1,
+        "icon": "layui-icon layui-icon-component",
+        "openType": "_iframe",
+        "href": "/easyvod/source"
+    },
+    {
+        "id": 5,
+        "title": "友情链接",
+        "type": 1,
+        "icon": "layui-icon layui-icon-link",
+        "openType": "_iframe",
+        "href": "/easyvod/link"
+    },
+    {
+        "id": 6,
+        "title": "刷新缓存",
+        "type": 1,
+        "icon": "layui-icon layui-icon-app",
+        "openType": "_iframe",
+        "href": "/easyvod/cache"
+    },
+    {
+        "id": 7,
+        "title": "网站首页",
+        "type": 1,
+        "icon": "layui-icon layui-icon-website",
+        "href": "/"
+    }
+]

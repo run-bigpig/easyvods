@@ -1,0 +1,14 @@
+<div class="module-footer">
+    <div id="page">
+        <a href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$area,"year"=>$year,"pageno"=>1])}}" class="page-number page-previous" title="首页">首页</a>
+        <a href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$area,"year"=>$year,"pageno"=>$pageno-1])}}" class="page-number page-previous" title="上一页">上一页</a>
+        @for($num=ev_page($pageno)['start'];$num<=ev_page($pageno)['end'];$num++)
+            @if($num==$pageno)
+        <span class="page-number page-current display">{{$num}}</span>
+            @else
+        <a href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$area,"year"=>$year,"pageno"=>$num])}}" class="page-number display" title="第{{$num}}页">{{$num}}</a>
+            @endif
+        @endfor
+        <a href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$area,"year"=>$year,"pageno"=>$pageno+1])}}" class="page-number page-next" title="下一页">下一页</a>
+    </div>
+</div>
