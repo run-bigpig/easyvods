@@ -15,7 +15,7 @@ class CreateEvAdminsTable extends Migration
     {
         Schema::create('ev_admins', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->comment("账号名称")->unique();
+            $table->string("name")->comment("账号名称")->unique("name");
             $table->string("password")->comment("密码");
             $table->ipAddress("nowloginip")->comment("当前登录IP")->nullable();
             $table->dateTime("nowlogintime")->comment("当前登录时间")->nullable();
