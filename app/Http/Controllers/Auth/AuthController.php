@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Auth;
 
 
+use App\Events\AdminLoginEvent;
 use App\Http\Controllers\Controller;
 use App\Models\EvAdmin;
 use Illuminate\Http\Request;
@@ -22,12 +23,13 @@ class AuthController extends Controller
 
     public function showLogin()
     {
-        if (Auth::check()){
+        if (Auth::check()) {
             return redirect(route("admin.index"));
         }
         return view("easyvod.views.login");
     }
 
+    //验证
     private function Verify(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -45,6 +47,7 @@ class AuthController extends Controller
         return true;
     }
 
+    //登录
     public function Login(Request $request)
     {
         $verify = $this->Verify($request);
@@ -55,6 +58,7 @@ class AuthController extends Controller
         $password = $request->post("password");
         $user = EvAdmin::where(["name" => $name, "password" => md5($password)])->first();
         if ($user) {
+            event(new AdminLoginEvent($user));
             $apitoken = Str::random(20);
             $user->update(["api_token" => $apitoken]);
             setcookie("api_token", $apitoken);
@@ -63,7 +67,7 @@ class AuthController extends Controller
         return response()->json(["code" => 1, "msg" => "登录失败"]);
     }
 
-
+    //登出
     public function LogOut()
     {
         $user = Auth::user();
@@ -74,6 +78,7 @@ class AuthController extends Controller
         return redirect(route("admin.index"));
     }
 
+    //修改密码
     public function ChangePass(Request $request)
     {
         $user = Auth::user();

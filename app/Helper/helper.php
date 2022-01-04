@@ -43,7 +43,7 @@ function nowplay(string $nowtype, string $nowaddress, string $nowurl)
 {
     return route("index.play", ["url" => "evnowplay@{$nowtype}@{$nowurl}@" . base64_endcode_plus($nowaddress)], false);
 }
-
+//翻页计算
 function ev_page($pg)
 {
     $num = $pg / 5;
@@ -57,7 +57,7 @@ function ev_page($pg)
 
     return ['start' => $star, 'end' => $end];
 }
-
+//判断当前字符串是xml还是json
 function IsXmlOrJson($str)
 {
     if (is_xml($str)) {
@@ -68,7 +68,7 @@ function IsXmlOrJson($str)
         return false;
     }
 }
-
+//判断当前字符串是否为xml
 function is_xml($str)
 {
     $xml_parser = xml_parser_create();
@@ -79,6 +79,7 @@ function is_xml($str)
     return true;
 }
 
+//判断当前字符串是否为json
 function is_json($str)
 {
     $data = json_decode($str);
@@ -129,6 +130,7 @@ function webconfig($key)
     return "";
 }
 
+//检测播放地址
 function checkeraddress($address)
 {
     if (stripos($address, "http") !== false) {
@@ -160,6 +162,7 @@ function ev_source()
     return \App\Models\EvSource::where(["status" => 1])->get()->toArray();
 }
 
+//解析资源站的内容
 function ContentParse($html)
 {
     $htmltype = IsXmlOrJson($html);

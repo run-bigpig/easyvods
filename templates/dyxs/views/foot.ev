@@ -9,18 +9,18 @@
         <a target="_blank" href="/">Sogou</a><span class="space-line-bold"></span>
         <a target="_blank" href="/">SM</a>
     </p>
-    <p>本站所有内容均来自互联网分享站点所提供的公开引用资源，未提供资源上传、存储服务。</p>
-    <p class="none">统计代码</p>
+    <p>{{webconfig("icp")}}本站所有内容均来自互联网分享站点所提供的公开引用资源，未提供资源上传、存储服务 如有侵权请联系{{webconfig("email")}}。</p>
+    <p class="none">{!! webconfig("tj") !!}</p>
 </footer>
 
 
 
-<div class="foot_right_bar">
-    <div title="求片留言">
-        <a  href="/" >
-            <i class="iconfont icon-liuyan"></i>
-        </a>
-    </div>
+<div class="foot_right_bar" style="display: none">
+{{--    <div title="求片留言">--}}
+{{--        <a  href="/" >--}}
+{{--            <i class="iconfont icon-liuyan"></i>--}}
+{{--        </a>--}}
+{{--    </div>--}}
     <div class="goTop" title="返回顶部">
         <i class="iconfont icon-up"></i>
     </div>
@@ -30,8 +30,10 @@
     $(function(){
         $(window).scroll(function() {
             if($(window).scrollTop() >= 100){
+                $('.foot_right_bar').show()
                 $('.goTop').fadeIn(300);
             }else{
+                $('.foot_right_bar').hide()
                 $('.goTop').fadeOut(300);
             }
         });
@@ -45,7 +47,7 @@
         <h3 class="popup-title">公告内容</h3>
     </div>
     <div class="popup-main">
-        这些就是公告内容
+        {{webconfig("notice")}}
     </div>
     <div class="popup-footer"><span class="popup-btn" onclick="closeclick()">我记住啦</span></div>
 </div>

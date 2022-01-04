@@ -22,6 +22,7 @@ class CreateEvConfigsTable extends Migration
             $table->string("keywords")->comment("网站关键字")->default("easyvod");
             $table->string("content")->comment("网站描述")->default("easyvod");
             $table->mediumText("tj")->comment("统计代码")->nullable();
+            $table->mediumText("notice")->comment("网站公告")->nullable();
             $table->tinyInteger("cache")->comment("全站缓存 0关闭 1开启")->nullable();
             $table->string("method")->comment("目标站")->default("qihu");
             $table->string("template")->comment("模板")->default("dyxs");

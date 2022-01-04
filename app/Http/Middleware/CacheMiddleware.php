@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Cache;
 class CacheMiddleware
 {
 
+    //缓存中间件
     public function handle($request, Closure $next)
     {
         if ($request->isMethod("get")&&webconfig("cache")==1) {

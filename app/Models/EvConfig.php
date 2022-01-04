@@ -13,5 +13,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class EvConfig extends Model
 {
-   protected $fillable = ["name","logo","email","icp","keywords","content","tj","method","template","cache","status"];
+   protected $fillable = ["name","logo","email","icp","keywords","content","tj","notice","method","template","cache","status"];
 }

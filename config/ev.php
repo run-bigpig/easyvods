@@ -6,8 +6,8 @@
  **/
 
 return [
-    "defaultplayer" => "https://www.1717yun.com/api/?url=",
-    "playertype" => [
+    "defaultplayer" => "https://api.okjx.cc:3389/jx.php?url=",//默认播放器
+    "playertype" => [//官方视频网站类型
         "qq",
         "le",
         "iqiyi",
