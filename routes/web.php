@@ -13,6 +13,9 @@
 |
 */
 
+$router->get("/install",["as" => "install", "uses" => "Admin\InstallController@Index"]);
+$router->post("/install",["as" => "install", "uses" => "Admin\InstallController@Index"]);
+
 $router->group(["namespace" => "Index","middleware"=>"cache"], function () use ($router) {
     $router->get('/', ["as" => "index.home", "uses" => "IndexController@Index"]);
     $router->get('/list/{channel}-{kind}-{area}-{year}-{pageno}.html', ["as" => "index.list", "uses" => "IndexController@List"]);

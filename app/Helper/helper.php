@@ -10,6 +10,28 @@ function config_path($path = '')
     return app()->configPath($path);
 }
 
+function is_really_writable($file)
+{
+    if (DIRECTORY_SEPARATOR === '/') {
+        return is_writable($file);
+    }
+    if (is_dir($file)) {
+        $file = rtrim($file, '/') . '/' . md5(mt_rand());
+        if (($fp = @fopen($file, 'ab')) === false) {
+            return false;
+        }
+        fclose($fp);
+        @chmod($file, 0777);
+        @unlink($file);
+        return true;
+    } elseif (!is_file($file) or ($fp = @fopen($file, 'ab')) === false) {
+        return false;
+    }
+    fclose($fp);
+    return true;
+}
+
+
 //后台资源路径
 function ev_admin($asset)
 {
@@ -43,6 +65,7 @@ function nowplay(string $nowtype, string $nowaddress, string $nowurl)
 {
     return route("index.play", ["url" => "evnowplay@{$nowtype}@{$nowurl}@" . base64_endcode_plus($nowaddress)], false);
 }
+
 //翻页计算
 function ev_page($pg)
 {
@@ -57,6 +80,7 @@ function ev_page($pg)
 
     return ['start' => $star, 'end' => $end];
 }
+
 //判断当前字符串是xml还是json
 function IsXmlOrJson($str)
 {
@@ -68,6 +92,7 @@ function IsXmlOrJson($str)
         return false;
     }
 }
+
 //判断当前字符串是否为xml
 function is_xml($str)
 {
@@ -77,6 +102,25 @@ function is_xml($str)
         return false;
     }
     return true;
+}
+
+function writeconfig($file, $arr)
+{
+    ob_start();
+    var_export($arr);
+    $arrStr = ob_get_contents();
+    ob_end_clean();
+    $config = '<?php' . PHP_EOL
+        . 'return ' . $arrStr . ';';
+    if (file_exists($file)) {
+        unlink($file);
+    }
+    $res = @file_put_contents($file, $config);
+    if ($res) {
+        return 'ok';
+    } else {
+        return 'faild';
+    }
 }
 
 //判断当前字符串是否为json
@@ -126,9 +170,9 @@ function webconfig($key)
     if (\Illuminate\Support\Facades\Cache::has("webconfig")) {
         $config = json_decode(\Illuminate\Support\Facades\Cache::get("webconfig"), 1);
         return $config[$key] ?? "";
-    }else{
+    } else {
         $defaultconfig = ["name" => "easyvod", "logo" => "https://s3.bmp.ovh/imgs/2021/12/2b10e5863ed2cfae.png", "icp" => "xxxx", "email" => "admin@admin.com", "keywords" => "easyvod", "content" => "easyvod", "tj" => "xxxx", "notice" => "测试公告", "cache" => 1, "method" => "qihu", "template" => "dyxs", "status" => 1];
-       return $defaultconfig[$key]??"";
+        return $defaultconfig[$key] ?? "";
     }
 }
 
@@ -137,7 +181,7 @@ function checkeraddress($address)
 {
     if (stripos($address, "http") !== false) {
         $urls = parse_url($address);
-        $newurl = sprintf("%s://%s%s",$urls["scheme"]??"http",$urls["host"], $urls["path"]);
+        $newurl = sprintf("%s://%s%s", $urls["scheme"] ?? "http", $urls["host"], $urls["path"]);
     } else {
         $newurl = $address;
     }
@@ -145,7 +189,7 @@ function checkeraddress($address)
     $nowplay = config("ev.defaultplayer") . $newurlarr[0];
     $players = \App\Models\EvPlayer::get();
     foreach ($players as $player) {
-        $playertype = in_array($player->type,config("ev.playertype"))?".{$player->type}.":$player->type;
+        $playertype = in_array($player->type, config("ev.playertype")) ? ".{$player->type}." : $player->type;
         if (strpos($newurl, $playertype) !== false) {
             $nowplay = $player->url . $newurlarr[0];
             break;

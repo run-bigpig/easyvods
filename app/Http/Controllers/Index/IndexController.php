@@ -17,11 +17,13 @@ use Illuminate\Http\Request;
 class IndexController extends Controller
 {
     /**
-     * @return \Illuminate\View\View|\Laravel\Lumen\Application
      * 首页
      */
     public function Index()
     {
+        if (!file_exists(base_path("center/install.lock"))){
+            return redirect("/install");
+        }
         $listconfig = [
             ["channel" => "mv", "kind" => "all", "area" => "all", "pageno" => 1, "size" => 24],
             ["channel" => "tv", "kind" => "all", "area" => "all", "pageno" => 1, "size" => 24],

@@ -1,0 +1,22 @@
+{
+    "name": "run-bigpig/ev",
+    "description": "A package to get video",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "syskey",
+            "email": "syskeykala@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0",
+        "jaeger/querylist": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "EasyVod\\": "src"
+        }
+    }
+}

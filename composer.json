@@ -9,7 +9,8 @@
         "ext-json": "*",
         "laravel/lumen-framework": "^8.0",
         "run-bigpig/ev": "dev-dev",
-        "youngyezi/captcha": "^6.0"
+        "youngyezi/captcha": "^6.0",
+       "ext-pdo": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
