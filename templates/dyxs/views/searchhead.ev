@@ -19,7 +19,7 @@
                                 <li class="grid-item"><a href="/"><i class="icon-home"></i>
                                         <div class="grid-item-name" title="{{webconfig("name")}}首页">首页</div>
                                     </a></li>
-                                <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-dy"></i><div class="grid-item-name" title="电影">首页</div></a></li>
+                                <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-dy"></i><div class="grid-item-name" title="电影">电影</div></a></li>
                                 <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-ds"></i><div class="grid-item-name" title="电视">电视</div></a></li>
                                 <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-zy"></i><div class="grid-item-name" title="综艺">综艺</div></a></li>
                                 <li class="grid-item"><a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><i class="icon-cate-dm"></i><div class="grid-item-name" title="动漫">动漫</div></a></li>
