@@ -1,0 +1,14 @@
+<div class="clear" style="height:1.2rem"></div>
+
+<div class="copyright">
+    <p>{{webconfig("icp")}}本站所有内容均来自互联网分享站点所提供的公开引用资源，未提供资源上传、存储服务 如有侵权请联系{{webconfig("email")}}</p>
+    <p class="none">{!! webconfig("tj") !!}</p>
+</div>
+
+<a class="scroll-to-top" id="scrollToTop"></a>
+
+<script src="{{ev_index("mgtv/statics/js/jquery.min.js")}}"></script>
+<script src="{{ev_index("mgtv/statics/js/common.js")}}"></script>
+<script src="{{ev_index("mgtv/statics/js/")}}{{$js}}.js"></script>
+</body>
+</html>

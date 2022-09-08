@@ -1,0 +1,74 @@
+@include("mgtv.views.head",["ltype"=>"","play"=>false])
+<body class="body">
+<div class="header-bg-wrap">
+    <div class="header-bg"><i id="headBg"></i><span></span></div>
+    <div class="header">
+        <a class="logo" href="/" style="background-image:url({{webconfig("logo")}}")></a>
+        <div class="search">
+            <form action="{{ev_route("index.search",[])}}" id="searchBox">
+                <input type="text" placeholder="输入你想看的" name="cz"/>
+            </form>
+            <a onclick="document.getElementById('searchBox').submit();return false;"></a>
+        </div>
+        <div class="navigate">
+            <a href="/" class="current">精选</a>
+            <a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">电影</a>
+            <a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">电视剧</a>
+            <a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">综艺</a>
+            <a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">动漫</a>
+        </div>
+    </div>
+
+    <span class="clear" style="height:0.1rem"></span>
+
+    <div class="s-slider">
+        <ul id="bannerList">
+            @foreach($bannerlist as $banner)
+            <li><a href="{{ev_route("index.play",["url"=>$banner["url"]])}}"><i style="background-image:url({{$banner["img"]}})"></i><span>{{$banner["title"]}}</span></a></li>
+            @endforeach
+        </ul>
+        <ol></ol>
+        <div style="display:none"><span class="now"></span><span>/</span><span class="total"></span></div>
+    </div>
+</div>
+
+@foreach($vodlist as $channel=>$vods)
+<div class="list">
+        @if($channel=="mv")
+        <h3 class="title">热播大片</h3>
+        <div class="items" id="dianyingList">
+        @elseif($channel=="tv")
+        <h3 class="title">热播剧集</h3>
+        <div class="items" id="dianshiList">
+        @elseif($channel=="ct")
+        <h3 class="title">热播动漫</h3>
+        <div class="items" id="dongmanList">
+        @else
+        <h3 class="title">热播综艺</h3>
+        <div class="items" id="zongyiList">
+        @endif
+        @foreach($vods as $vod)
+        <a href="{{ev_route("index.play",["url"=>$vod["url"]])}}"  @if($loop->index>=6)style="display: none"@endif>
+            <i style="background-image:url({{$vod["img"]}})"><b>{{$channel=="mv"?"评分".$vod["score"]:"更新至".$vod["episode"]}}</b></i>
+            <span>{{$vod["title"]}}</span>
+        </a>
+        @endforeach
+        <span class="clear"></span>
+    </div>
+    <div class="more">
+        <a href="{{ev_route("index.list",["channel"=>$channel,"kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}"><img src="{{ev_index("mgtv/statics/images/more_1.png")}}" />更多戳这里</a>
+        @if($channel=="mv")
+            <a class="switch-button" data-list-type="dianying"><img src="{{ev_index("mgtv/statics/images/more_2.png")}}" />换一换</a>
+        @elseif($channel=="tv")
+            <a class="switch-button" data-list-type="dianshi"><img src="{{ev_index("mgtv/statics/images/more_2.png")}}" />换一换</a>
+        @elseif($channel=="ct")
+            <a class="switch-button" data-list-type="dongman"><img src="{{ev_index("mgtv/statics/images/more_2.png")}}" />换一换</a>
+        @else
+            <a class="switch-button" data-list-type="zongyi"><img src="{{ev_index("mgtv/statics/images/more_2.png")}}" />换一换</a>
+        @endif
+    </div>
+</div>
+
+<div class="clear" style="height:0.8rem"></div>
+@endforeach
+@include("mgtv.views.foot",["js"=>"index"])

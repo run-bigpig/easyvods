@@ -62,7 +62,9 @@
                             <label class="layui-form-label">模板:</label>
                             <div class="layui-input-block">
                                 <select name="template" lay-verify="" lay-filter="template">
-                                    <option value="dyxs" {{$config->template=="dyxs"?"selected":""}}>电影先生</option>
+                                    @foreach(ev_templates() as $key=>$name)
+                                    <option value="{{$key}}" {{$config->template==$key?"selected":""}}>{{$name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

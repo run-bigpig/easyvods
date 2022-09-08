@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="renderer" content="webkit">
+    <meta name="referrer" content="no-referrer">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+    <title>{{webconfig("name")}}</title>
+    <meta name="keywords" content="{{webconfig("keywords")}}">
+    <meta name="description" content="{{webconfig("content")}}">
+    <link rel="stylesheet" type="text/css" href="{{ev_index("mgtv/statics/css/jquery.mobile.min.css")}}">
+    <link rel="stylesheet" type="text/css" href="{{ev_index("mgtv/statics/css/common.css")}}">
+    @if($play)
+        <link rel="stylesheet" type="text/css" href="{{ev_index("mgtv/statics/css/play.css")}}">
+    @endif
+</head>
+<body class="body" ltype="{{$ltype}}">

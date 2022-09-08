@@ -1,0 +1,62 @@
+@include("mgtv.views.head",["ltype"=>"","play"=>false])
+<div class="header-bg-wrap list">
+
+    <div class="header-bg"><i id="headBg"></i><span></span></div>
+
+    <div class="header">
+        <a class="logo" href="/" style="background-image:url({{webconfig("logo")}}")></a>
+        <div class="search">
+            <form action="{{ev_route("index.search",[])}}" id="searchBox">
+                <input type="text" placeholder="输入你想看的" name="cz"/>
+            </form>
+            <a onclick="document.getElementById('searchBox').submit();return false;"></a>
+        </div>
+        <div class="navigate">
+            <a href="/">精选</a>
+            <a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="{{$channel=="mv"?"current":""}}">电影</a>
+            <a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="{{$channel=="tv"?"current":""}}">电视剧</a>
+            <a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="{{$channel=="va"?"current":""}}">综艺</a>
+            <a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}" class="{{$channel=="ct"?"current":""}}">动漫</a>
+        </div>
+    </div>
+</div>
+<div class="clear" style="height:0.2rem"></div>
+
+<div class="condition" id="conditionBox">
+    @foreach(config("vodclass.".$channel) as $key=>$kclass)
+    <div class="s-slide-menu">
+        <div>
+           @foreach($kclass as $k=>$v)
+             @php
+             $argv = array_merge(["channel"=>$channel,"kind"=>$kind,"area"=>$year,"year"=>$year,"pageno"=>1],[$key=>$k])
+             @endphp
+            <a href="{{ev_route("index.list",$argv)}}" class="{{$$key==$k?"now":""}}">{{$v}}</a>
+            @endforeach
+        </div>
+    </div>
+    @endforeach
+</div>
+
+<div class="list">
+
+   @if(count($vodlist)==0)
+    <div class="no-data" id="noDataBox" style="margin-top:1rem;background:none">没有找到相关影片，请尝试其他分类！</div>
+
+    @else
+    <div class="items" id="listList">
+        @foreach($vodlist as $vod)
+        <a href="{{ev_route("index.play",["url"=>$vod["url"]])}}">
+            <i style="background-image:url({{$vod["img"]}})"><b>{{$channel=="mv"?"评分".$vod["score"]:"更新至".$vod["episode"]}}</b></i>
+            <span>{{$vod["title"]}}</span>
+        </a>
+        @endforeach
+        <span class="clear"></span>
+    </div>
+
+    <div class="more">
+        <a class="prev" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$area,"year"=>$year,"pageno"=>$pageno-1])}}" {{$pageno<=1?'style=display:none':""}}><img src="{{ev_index("mgtv/statics/images/more.png")}}" />上一页</a>
+        <a class="next" href="{{ev_route("index.list",["channel"=>$channel,"kind"=>$kind,"area"=>$area,"year"=>$year,"pageno"=>$pageno+1])}}">下一页<img src="{{ev_index("mgtv/statics/images/more.png")}}" /></a>
+    </div>
+    @endif
+</div>
+@include("mgtv.views.foot",["js"=>"list"])

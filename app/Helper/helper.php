@@ -240,3 +240,25 @@ function ContentParse($html)
         return ['code' => 1002, 'msg' => '无效得数据类型'];
     }
 }
+
+function ev_templates()
+{
+    $templates = [];
+    $templatesdir = base_path("templates/");
+    if (is_dir($templatesdir)) {
+        if ($dh = opendir($templatesdir)) {
+            while (($file = readdir($dh)) !== false) {
+                $filepath = $templatesdir . $file;
+                if (is_dir($filepath)) {
+                    $infofile = $filepath . DIRECTORY_SEPARATOR . "info.json";
+                    if (file_exists($infofile)) {
+                        $info = json_decode(file_get_contents($infofile), 1);
+                        $templates[$file] = $info["name"] ?? "未知";
+                    }
+                }
+            }
+            closedir($dh);
+        }
+    }
+    return $templates;
+}

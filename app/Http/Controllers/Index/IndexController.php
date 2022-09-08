@@ -20,7 +20,7 @@ class IndexController extends Controller
      * 首页
      */
     public function Index()
-    {
+    {   
         if (!file_exists(base_path("center/install.lock"))){
             return redirect("/install");
         }

@@ -1,0 +1,41 @@
+@include("mgtv.views.head",["ltype"=>"","play"=>false])
+<div class="header-bg-wrap list">
+
+    <div class="header-bg"><i id="headBg"></i><span></span></div>
+
+    <div class="header">
+        <a class="logo" href="/" style="background-image:url({{webconfig("logo")}}")></a>
+        <div class="search">
+            <form action="{{ev_route("index.search",[])}}" id="searchBox">
+                <input type="text" placeholder="输入你想看的" name="cz"/>
+            </form>
+            <a onclick="document.getElementById('searchBox').submit();return false;"></a>
+        </div>
+        <div class="navigate">
+            <a href="/">精选</a>
+            <a href="{{ev_route("index.list",["channel"=>"mv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">电影</a>
+            <a href="{{ev_route("index.list",["channel"=>"tv","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">电视剧</a>
+            <a href="{{ev_route("index.list",["channel"=>"va","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">综艺</a>
+            <a href="{{ev_route("index.list",["channel"=>"ct","kind"=>"all","area"=>"all","year"=>"all","pageno"=>1])}}">动漫</a>
+        </div>
+    </div>
+</div>
+<div class="clear" style="height:0.2rem"></div>
+<div class="keywords" id="keywordItem"><b>{{$kw}}</b> 的搜索结果：</div>
+<div class="list">
+
+    @if(count($vodlist)==0)
+    <div class="no-data" id="noDataBox" style="margin-top:1rem;background:none">没有找到相关影片，请尝试其他关键词！</div>
+    @else
+    <div class="items" id="listList">
+        @foreach($vodlist as $vod)
+        <a href="{{ev_route("index.play",["url"=>($sourceid==""?"":$sourceid."$").$vod["url"]])}}">
+            <i style="background-image:url({{$vod["img"]}})"><b>{{$vod["kind"]}}</b></i>
+            <span>{{$vod["title"]}}</span>
+        </a>
+        @endforeach
+        <span class="clear"></span>
+    </div>
+    @endif
+</div>
+@include("mgtv.views.foot",["js"=>"list"])

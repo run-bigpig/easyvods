@@ -1,0 +1,70 @@
+@include("mgtv.views.head",["ltype"=>"","play"=>true])
+<div class="header-bg-wrap one">
+
+    <div class="header-bg"><i id="headBg"></i><span></span></div>
+
+    <div class="header one">
+        <a class="logo" href="/" style="background-image:url({{webconfig("logo")}}")></a>
+        <div class="search">
+            <form action="{{ev_route("index.search",[])}}" id="searchBox">
+                <input type="text" placeholder="输入你想看的" name="cz"/>
+            </form>
+            <a onclick="document.getElementById('searchBox').submit();return false;"></a>
+        </div>
+    </div>
+</div>
+
+@if(count($vodplay)>0)
+<div id="playBox">
+
+    <div class="play-box" id="playBoxIframe">
+        <div class="tip" style="display: none">如无法播放请尝试切换线路，或<a>点击前往<span></span>播放</a><i class="close"></i></div>
+        <iframe frameborder="no" border="0" scrolling="no" allowfullscreen="true" allowtransparency="true" src="{{$nowplay["nowplay"]}}"></iframe>
+    </div>
+
+    <div class="clear" style=" height:0.3rem"></div>
+
+    <h3 class="from-title" id="titleItem" value="{{$vodinfo["title"]}}">{{$vodinfo["title"]}}</h3>
+    <div class="from" id="fromList" style="display:block">
+        <h3 class="episodes-title">选择来源</h3>
+        @foreach($vodplay as $play)
+            <a class="laiyuan {{$nowplay["nowtype"]==$play['type']?"current":""}}" playtype="{{$play['type']}}">{{$play['type']}}</a>
+        @endforeach
+        <span class="clear"></span>
+    </div>
+
+    <div class="loading" id="loadBox2" style="display: none">
+        <span class="s-loading"><i class="first"></i><i class="second"></i><i class="third"></i></span>
+    </div>
+    <div class="episodes" id="episodesBox" style="display:block;">
+        <div class="clear" style="height:0.3rem"></div>
+        <h3 class="episodes-title">选择播放<span class="episodes-control" id="episodesControl"><a class="prev">上一集</a><a class="next">下一集</a></span></h3>
+        @foreach($vodplay as $play)
+        <div class="episodes-list" playtype="{{$play['type']}}" style="{{$nowplay["nowtype"]==$play['type']?"display:block":"display:none"}}">
+            @foreach($play["list"] as $dz)
+                <a href="{{nowplay($play['type'],$dz['address'],$nowplay["nowurl"])}}" class="{{$nowplay["nowaddress"]==$dz["address"]?"current":""}}"  title="播放{{$vodinfo["title"]}}"><span>{{$dz['episode']}}</span></a>
+            @endforeach
+            <span class="clear"></span>
+        </div>
+        @endforeach
+    </div>
+</div>
+@else
+<div class="no-data" id="noDataBox">未找到可用播放线路</div>
+@endif
+
+<div class="clear" style="height:2rem"></div>
+<div id="itemList">
+    <div class="more">
+        <i style="background-image:url({{$vodinfo['img']}})"></i>
+        <h5>{{$vodinfo['title']}}</h5>
+        <span>{{$vodinfo["kind"]}}</span>
+        <span>{{$vodinfo["area"]}}</span>
+        <span>{{$vodinfo['director']}}</span>
+        <span>{{$vodinfo['actor']}}</span>
+    </div>
+    <div class="more desc">
+        <div>简介：{{$vodinfo['desc']}}</div>
+    </div>
+</div>
+@include("mgtv.views.foot",["js"=>"play"])
